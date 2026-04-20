@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TractorDev — разработка Telegram-ботов, веб-сайтов и софта. Портфолио проектов, заказ разработки, контакты.">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="TractorDev">
+    <meta property="og:description" content="Telegram-боты, сайты и софт: портфолио, заказ разработки, связь в Telegram.">
+    <meta property="og:image" content="favicon.ico">
+    <meta property="og:locale" content="ru_RU">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TractorDev">
+    <meta name="twitter:description" content="Telegram-боты, сайты и софт: портфолио, заказ разработки, связь в Telegram.">
+    <meta name="twitter:image" content="favicon.ico">
+    <title>TractorDev</title>
+    <link rel="icon" type="image/png" sizes="67x67" href="https://cdn-icons-png.flaticon.com/128/3097/3097090.png">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Перейти к содержимому</a>
+
+<lottie-player
+        id="animatedSticker"
+        src="src/gif/AnimatedSticker.json"
+        class="animated-sticker sticker-near-title"
+        background="transparent"
+        speed="1"
+        aria-hidden="true"
+        style="opacity: 0; visibility: hidden;">
+</lottie-player>
+
+<canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+<div class="container">
+    <header>
+        <button type="button" class="logo" id="logoBtn" aria-label="Анимация кода в логотипе">
+            <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9.5 21L4 16L9.5 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M22.5 11L28 16L22.5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M19 7L13 25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <pre class="code-text" id="codeText" aria-hidden="true"></pre>
+        </button>
+        <div class="header-controls">
+            <button type="button" class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+                <svg class="theme-icon sun-icon" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                     xmlns="http://www.w3.org/2000/svg" style="display: none;" aria-hidden="true">
+                    <circle cx="16" cy="16" r="6" stroke="currentColor" stroke-width="2"/>
+                    <path d="M16 4V6M16 26V28M28 16H26M6 16H4M24.485 7.515L23.071 8.929M8.929 23.071L7.515 24.485M24.485 24.485L23.071 23.071M8.929 8.929L7.515 7.515"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <svg class="theme-icon moon-icon" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M28 17.053A11 11 0 1 1 14.947 4 8.5 8.5 0 0 0 28 17.053z" stroke="currentColor"
+                          stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <button type="button" class="music-toggle" id="musicToggle" aria-label="Фоновая музыка">
+                <svg class="music-icon play-icon" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M10 8L24 16L10 24V8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+                <svg class="music-icon pause-icon" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                     xmlns="http://www.w3.org/2000/svg" style="display: none;" aria-hidden="true">
+                    <path d="M12 8V24M20 8V24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <audio id="backgroundMusic" loop>
+            <source src="src/music/Artemas - i like the way you kiss me.mp3" type="audio/mpeg">
+        </audio>
+    </header>
+
+    <main id="main">
+    <section class="hero">
+        <h1>TractorDev</h1>
+        <p class="subtitle">Software developer</p>
+        <p class="description">
+            Cпециализирован по созданию любых Telegram ботов, сайтов и прочих софтов.
+        </p>
+        <div class="cta-buttons">
+            <a href="#projects" class="btn">Рабочие проекты</a>
+            <a href="#contact" class="btn">Связаться</a>
+            <button type="button" class="btn btn-like" id="openOrderModal">Заказ / прайс</button>
+            <a href="https://app.tonkeeper.com/transfer/UQCMKhx9jYG7gJCbSqC_flr1vITLxQS49YfmbbqxrPuO5BFr" target="_blank" rel="noopener noreferrer" class="btn">Донат</a>
+        </div>
+    </section>
+
+    <section class="section" id="skills">
+        <h2 class="section-title">Навыки</h2>
+        <div class="tech-stack" aria-label="Stack">
+            <figure class="tech-item">
+                <img src="https://img.icons8.com/ios-filled/50/python.png" alt="" width="40" height="40" loading="lazy">
+                <figcaption>Python</figcaption>
+            </figure>
+            <figure class="tech-item">
+                <img src="https://img.icons8.com/ios-filled/50/sql.png" alt="" width="40" height="40" loading="lazy">
+                <figcaption>SQLite</figcaption>
+            </figure>
+            <figure class="tech-item">
+                <img src="https://img.icons8.com/ios-filled/50/html-5--v1.png" alt="" width="40" height="40" loading="lazy">
+                <figcaption>HTML</figcaption>
+            </figure>
+            <figure class="tech-item">
+                <img src="https://img.icons8.com/ios-filled/50/css3.png" alt="" width="40" height="40" loading="lazy">
+                <figcaption>CSS</figcaption>
+            </figure>
+            <figure class="tech-item">
+                <img src="https://img.icons8.com/ios-filled/50/javascript.png" alt="" width="40" height="40" loading="lazy">
+                <figcaption>JavaScript</figcaption>
+            </figure>
+        </div>
+        <p class="tech-stack-caption">Основной стек технологий:</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Web Design & Development</h3>
+                <p>Создание сайтов с интерактивными анимациями, адаптивным дизайном и JavaScript
+                    функционалом</p>
+            </div>
+            <div class="skill-card">
+                <h3>UX/UI Design</h3>
+                <p>Проектирование интерфейсов с фокусом на удобство, визуальную привлекательность и пользовательский
+                    опыт</p>
+            </div>
+            <div class="skill-card">
+                <h3>Python Development</h3>
+                <p>Разработка Telegram ботов на aiogram, работа с JSON, SqLite, API, системы логирования и создание автоматизированных
+                    решений</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="projects">
+        <h2 class="section-title">Рабочие проекты</h2>
+        <div class="projects-grid">
+            <a href="https://t.me/SlappVPN_bot" target="_blank" rel="noopener noreferrer" class="project-card">
+                <div class="project-image">
+                    <video loop muted playsinline preload="metadata" loading="lazy"
+                           poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect fill='%231a1a1a' width='16' height='9'/%3E%3C/svg%3E"
+                           aria-describedby="vd-shop">
+                        <source src="src/gif/VPN.gif" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                    <span class="sr-only" id="vd-shop">Демо: интерфейс бота Striver Shop, скролл каталога.</span>
+                </div>
+                <div class="project-content">
+                    <h3>Slapp VPN</h3>
+                    <p>Индивидуальный VPN сервис в Telegram. Платежка: Автоматическая, YouMoney. Продается
+                        в этом же боте и поддерживает обновления. Самый лучший проект.</p>
+                    <div class="case-mini">
+                        <p><strong>Задача:</strong> Индивидуальный VPN сервис в Telegram Mini App с Автоматической оплатой YouMoney.</p>
+                        <p><strong>Сделано:</strong> каталог, выдача баланса, транзакции и тд обновления и поддержка в одном боте.</p>
+                        <p><strong>Стек:</strong> Python, aiogram, SQLite, React, Node.js and others</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://github.com/pxdxx/NektoMe-HelpPanel" target="_blank" rel="noopener noreferrer" class="project-card">
+                <div class="project-image">
+                    <video loop muted playsinline preload="metadata" loading="lazy"
+                           poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect fill='%231a1a1a' width='16' height='9'/%3E%3C/svg%3E"
+                           aria-describedby="vd-conv">
+                        <source src="src/gif/Nektome.gif" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                    <span class="sr-only" id="vd-conv">Демо: конвертация стикеров в гиф в боте.</span>
+                </div>
+                <div class="project-content">
+                    <h3>Расширение для сайта Nekto.me [Open Source]</h3>
+                    <p>Расширение которое добавляет красивую панель справа в голосовый чат рулетке Nekto.me</p>
+                <div class="case-mini">
+                        <p><strong>Задача:</strong> Сделать удобную панель для настройки и пользования сайтом.</p>
+                        <p><strong>Сделано:</strong> Современная панель, Смена темы сайта, Статистика разговоров.</p>
+                        <p><strong>Стек:</strong> JavaScript, CSS, Json</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" target="_blank" rel="noopener noreferrer" class="project-card">
+                <div class="project-image">
+                    <video loop muted playsinline preload="metadata" loading="lazy"
+                           poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect fill='%231a1a1a' width='16' height='9'/%3E%3C/svg%3E"
+                           aria-describedby="vd-habits">
+                        <source src="src/gif/Soon.gif" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                    <span class="sr-only" id="vd-habits">Демо: трекер привычек Habits в Telegram.</span>
+                </div>
+                <div class="project-content">
+                    <h3>Cooming soon...</h3>
+                    <p>Cooming soon...</p>
+                <div class="case-mini">
+                        <p><strong>Задача:</strong> Cooming soon...</p>
+                        <p><strong>Сделано:</strong> Cooming soon...</p>
+                        <p><strong>Стек:</strong> Cooming soon...</p>
+                    </div>
+                </div>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="project-card">
+                <div class="project-image">
+                    <video loop muted playsinline preload="metadata" loading="lazy"
+                           poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect fill='%231a1a1a' width='16' height='9'/%3E%3C/svg%3E"
+                           aria-describedby="vd-transly">
+                        <source src="src/gif/Soon.gif" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                    <span class="sr-only" id="vd-transly">Демо: переводчик Transly, чат с автопереводом.</span>
+                </div>
+                <div class="project-content">
+                    <h3>Cooming soon...</h3>
+                    <p>Cooming soon...</p>
+                <div class="case-mini">
+                        <p><strong>Задача:</strong> Cooming soon...</p>
+                        <p><strong>Сделано:</strong> Cooming soon...</p>
+                        <p><strong>Стек:</strong> Cooming soon...</p>
+                    </div>
+                </div>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="project-card">
+                <div class="project-image">
+                    <video loop muted playsinline preload="metadata" loading="lazy"
+                           poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect fill='%231a1a1a' width='16' height='9'/%3E%3C/svg%3E"
+                           aria-describedby="vd-emoji">
+                        <source src="src/gif/Soon.gif" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                    <span class="sr-only" id="vd-emoji">Демо: Premium Emoji ID, вывод ID эмодзи.</span>
+                </div>
+                <div class="project-content">
+                    <h3>Cooming soon...</h3>
+                    <p>Cooming soon...</p>
+                <div class="case-mini">
+                        <p><strong>Задача:</strong> Cooming soon...</p>
+                        <p><strong>Сделано:</strong> Cooming soon...</p>
+                        <p><strong>Стек:</strong> Cooming soon...</p>
+                    </div>
+                </div>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="project-card">
+                <div class="project-image">
+                    <video loop muted playsinline preload="metadata" loading="lazy"
+                           poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect fill='%231a1a1a' width='16' height='9'/%3E%3C/svg%3E"
+                           aria-describedby="vd-taska">
+                        <source src="src/gif/Soon.gif" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                    <span class="sr-only" id="vd-taska">Демо: Taska, задания и выплаты.</span>
+                </div>
+                <div class="project-content">
+                    <h3>Cooming soon...</h3>
+                    <p>Cooming soon...</p>
+                <div class="case-mini">
+                        <p><strong>Задача:</strong> Cooming soon...</p>
+                        <p><strong>Сделано:</strong> Cooming soon...</p>
+                        <p><strong>Стек:</strong> Cooming soon...</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <h2 class="section-title">Контакты</h2>
+        <div class="contact-info">
+            <a href="https://t.me/pxdxz" class="contact-item" rel="noopener noreferrer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                     class="sf-symbol" aria-hidden="true">
+                    <path d="M21 2L14 21L10 13L2 9L21 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                    <path d="M10 13L21 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+                <span>Telegram</span>
+            </a>
+            <a href="https://t.me/slappvpn" target="_blank" rel="noopener noreferrer" class="contact-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                     class="sf-symbol" aria-hidden="true">
+                    <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89317 18.7122 8.75608 18.1676 9.45768C17.623 10.1593 16.8604 10.6597 16 10.88"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Приветка</span>
+            </a>
+            <a href="https://github.com/pxdxx" target="_blank" rel="noopener noreferrer" class="contact-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                     class="sf-symbol" aria-hidden="true">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                <span>GitHub</span>
+            </a>
+            <a href="mailto:rasputikovv@gmail.com" class="contact-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                     class="sf-symbol" aria-hidden="true">
+                    <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                    <path d="M22 7L12 13L2 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span>rasputikovv@gmail.com</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 | Made with by TractorDev & AspireDev</p>
+    </footer>
+    </main>
+</div>
+
+<div class="modal-backdrop" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle" hidden>
+    <div class="modal-panel">
+        <button type="button" class="modal-close" id="closeOrderModal" aria-label="Закрыть">&times;</button>
+        <h2 id="orderModalTitle">Заказ и сроки</h2>
+        <p class="modal-lead">Коротко, как мы можем поработать:</p>
+        <ol class="modal-list">
+            <li>Боты, сайты, мини-софт — опишите задачу и желаемый результат.</li>
+            <li>Сроки зависят от объёма: простой бот — от нескольких дней, сложные сценарии дольше.</li>
+            <li>Пишите в Telegram: коротко, по шагам, можно с примером «как у этого бота».</li>
+            <li>После обсуждения дам ориентир по времени и формату оплаты.</li>
+            <li>Обновления и поддержка — по договорённости.</li>
+        </ol>
+        <a href="https://t.me/pxdxz" class="btn modal-cta" rel="noopener noreferrer">Написать в Telegram</a>
+    </div>
+</div>
+
+    <script src="main.js"></script>
+</body>
+</html>
